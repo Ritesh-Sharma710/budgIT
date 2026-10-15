@@ -151,6 +151,11 @@ export function monthName(month: number): string {
   return MONTH_NAMES[month - 1] ?? "";
 }
 
+/** Short month name from a 1-based month number, e.g. `3` → `Mar`. */
+export function monthShortName(month: number): string {
+  return MONTH_ABBR[month - 1] ?? "";
+}
+
 export function formatDate(
   iso: ISODate,
   locale = "en-IN",

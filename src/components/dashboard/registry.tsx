@@ -7,7 +7,14 @@ import {
   IncomeOverviewWidget,
   SavingsTrackerWidget,
 } from "./widgets/metric-widgets";
-import { RecentTransactionsWidget, SavingsInsightsWidget, TopCategoriesWidget, UpcomingRecurringWidget } from "./widgets/list-widgets";
+import { RecentTransactionsWidget, TopCategoriesWidget, UpcomingRecurringWidget } from "./widgets/list-widgets";
+import {
+  AnnualSavingsTrendWidget,
+  CategoryBreakdownWidget,
+  DailySpendingWidget,
+  IncomeVsExpenseWidget,
+  SavingsRateWidget,
+} from "./widgets/chart-widgets";
 import { BudgetProgressWidget } from "./widgets/budget-widget";
 import { FinancialGoalsWidget } from "./widgets/goals-widget";
 
@@ -28,22 +35,25 @@ const SPANS: Record<WidgetSize, string> = {
 /**
  * Widget registry.
  *
- * Chart-driven widgets (income vs expenses, category donut, savings trend,
- * daily spend, annual trend, savings rate) are registered in Phase 4. Anything
- * not present here is hidden from the dashboard and the customise dialog, so
- * the app never shows an empty placeholder shell.
+ * Maps every widget id to its renderer and responsive grid span. Anything not
+ * present here is hidden from the dashboard and the customise dialog, so the
+ * app never shows an empty placeholder shell.
  */
 export const WIDGET_REGISTRY: Partial<Record<WidgetId, WidgetDefinition>> = {
   overview: { id: "overview", component: FinancialOverviewWidget, spans: SPANS },
-  "income-overview": { id: "income-overview", component: IncomeOverviewWidget, spans: SPANS },
-  "expense-overview": { id: "expense-overview", component: ExpenseOverviewWidget, spans: SPANS },
+  "income-vs-expense": { id: "income-vs-expense", component: IncomeVsExpenseWidget, spans: SPANS },
+  "category-breakdown": { id: "category-breakdown", component: CategoryBreakdownWidget, spans: SPANS },
   "savings-tracker": { id: "savings-tracker", component: SavingsTrackerWidget, spans: SPANS },
   "budget-progress": { id: "budget-progress", component: BudgetProgressWidget, spans: SPANS },
+  "daily-spending": { id: "daily-spending", component: DailySpendingWidget, spans: SPANS },
   "recent-transactions": { id: "recent-transactions", component: RecentTransactionsWidget, spans: SPANS },
   "financial-goals": { id: "financial-goals", component: FinancialGoalsWidget, spans: SPANS },
   "top-categories": { id: "top-categories", component: TopCategoriesWidget, spans: SPANS },
+  "income-overview": { id: "income-overview", component: IncomeOverviewWidget, spans: SPANS },
+  "expense-overview": { id: "expense-overview", component: ExpenseOverviewWidget, spans: SPANS },
+  "annual-savings-trend": { id: "annual-savings-trend", component: AnnualSavingsTrendWidget, spans: SPANS },
+  "savings-rate": { id: "savings-rate", component: SavingsRateWidget, spans: SPANS },
   "upcoming-recurring": { id: "upcoming-recurring", component: UpcomingRecurringWidget, spans: SPANS },
-  "annual-savings-trend": { id: "annual-savings-trend", component: SavingsInsightsWidget, spans: SPANS },
 };
 
 export function registeredWidgetIds(): WidgetId[] {

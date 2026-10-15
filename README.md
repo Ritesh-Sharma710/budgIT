@@ -19,9 +19,9 @@ Phase 6). There is no account, no backend and no analytics on your data.
 | ----- | ----- | ----- |
 | 1 | Repository inspection & implementation plan | ✅ |
 | 2 | Financial data model, calculation rules, storage abstraction | ✅ |
-| 3 | Responsive dashboard, navigation, transactions, budgets, savings goals | ⏳ not started |
-| 4 | Interactive charts, monthly & annual reports | ⏳ not started |
-| 5 | Local persistence hardening, import/export, backup/restore | 🚧 foundations done in Phase 2 (IndexedDB, CSV, JSON backup) |
+| 3 | Responsive dashboard, navigation, transactions, budgets, savings goals | ✅ |
+| 4 | Interactive charts, monthly & annual reports | ✅ |
+| 5 | Local persistence hardening, import/export, backup/restore | 🚧 data & privacy screen done (JSON backup, CSV, demo data, erase) |
 | 6 | Google OAuth + Google Sheets sync | ⏳ not started (by request) |
 | 7 | Testing, accessibility, responsive polish, docs | 🚧 ongoing |
 

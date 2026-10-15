@@ -122,10 +122,10 @@ export function TransactionsPage() {
       />
 
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        <StatCard label="Income" value={fmt.money(totals.income)} tone="positive" />
-        <StatCard label="Expenses" value={fmt.money(totals.expenses)} tone="negative" />
-        <StatCard label="Net savings" value={fmt.money(totals.netSavings)} tone={totals.netSavings >= 0 ? "positive" : "negative"} />
-        <StatCard label="Entries" value={String(totals.transactionCount)} hint={scopeToMonth ? monthLabel(month, { short: true }) : "All time"} />
+        <StatCard title="Income" value={fmt.money(totals.income)} tone="positive" />
+        <StatCard title="Expenses" value={fmt.money(totals.expenses)} tone="negative" />
+        <StatCard title="Net savings" value={fmt.money(totals.netSavings)} tone={totals.netSavings >= 0 ? "positive" : "negative"} />
+        <StatCard title="Entries" value={String(totals.transactionCount)} subtitle={scopeToMonth ? monthLabel(month, { short: true }) : "All time"} />
       </div>
 
       <Card className="space-y-4 p-4">

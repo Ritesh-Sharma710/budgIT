@@ -46,7 +46,7 @@ export function FinancialOverviewWidget({ data }: WidgetProps) {
   return (
     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
       <StatCard
-        label="Income"
+        title="Income"
         value={fmt.money(summary.income)}
         icon={ArrowUpCircle}
         tone="positive"
@@ -54,7 +54,7 @@ export function FinancialOverviewWidget({ data }: WidgetProps) {
         changeLabel="vs last month"
       />
       <StatCard
-        label="Expenses"
+        title="Expenses"
         value={fmt.money(summary.expenses)}
         icon={ArrowDownCircle}
         tone="negative"
@@ -63,7 +63,7 @@ export function FinancialOverviewWidget({ data }: WidgetProps) {
         changeLabel="vs last month"
       />
       <StatCard
-        label="Net savings"
+        title="Net savings"
         value={fmt.money(summary.netSavings)}
         icon={PiggyBank}
         tone={summary.netSavings >= 0 ? "positive" : "negative"}
@@ -71,43 +71,43 @@ export function FinancialOverviewWidget({ data }: WidgetProps) {
         changeLabel="vs last month"
       />
       <StatCard
-        label="Savings rate"
+        title="Savings rate"
         value={savingsRateValue === null ? "—" : fmt.percent(savingsRateValue)}
         icon={Percent}
-        hint={savingsRateValue === null ? "No income recorded" : "of this month's income"}
+        subtitle={savingsRateValue === null ? "No income recorded" : "of this month's income"}
       />
       <StatCard
-        label="Remaining budget"
+        title="Remaining budget"
         value={
           budgetEvaluation.overallRemaining === null ? "Not set" : fmt.money(budgetEvaluation.overallRemaining)
         }
         icon={Wallet}
         tone={budgetTone}
-        hint={
+        subtitle={
           budgetEvaluation.overallUtilization === null
             ? "Set a budget to track this"
             : `${fmt.percent(budgetEvaluation.overallUtilization, 0)} used`
         }
       />
       <StatCard
-        label={`${year} savings`}
+        title={`${year} savings`}
         value={fmt.money(ytdSavings)}
         icon={TrendingUp}
         tone={ytdSavings >= 0 ? "positive" : "negative"}
-        hint={`${monthLabel(month, { short: true })} to date`}
+        subtitle={`${monthLabel(month, { short: true })} to date`}
       />
       <StatCard
-        label={`${year} income / expenses`}
+        title={`${year} income / expenses`}
         value={`${fmt.moneyCompact(ytdIncome)} / ${fmt.moneyCompact(ytdExpenses)}`}
         icon={Scale}
-        hint="Year to date"
+        subtitle="Year to date"
       />
       <StatCard
-        label="Month-on-month"
+        title="Month-on-month"
         value={fmt.signed(comparison.netSavingsChange)}
         icon={CalendarCheck}
         tone={comparison.netSavingsChange >= 0 ? "positive" : "negative"}
-        hint={`Net savings vs ${monthLabel(month, { short: true })}`}
+        subtitle={`Net savings vs ${monthLabel(month, { short: true })}`}
       />
     </div>
   );

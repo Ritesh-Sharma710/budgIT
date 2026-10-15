@@ -1,17 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { CalendarClock, Receipt, Tag, TrendingUp } from "lucide-react";
+import { CalendarClock } from "lucide-react";
 import { WidgetCard, WidgetEmpty } from "../widget-card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { Separator } from "@/components/ui/progress";
 import { TransactionRow } from "@/components/transactions/transaction-row";
 import { TransactionDialog } from "@/components/transactions/transaction-dialog";
 import type { Transaction } from "@/domain/types";
 import { useFormat } from "@/state/format";
 import { monthLabel } from "@/lib/date";
-import { cn } from "@/lib/utils";
 import type { WidgetProps } from "./metric-widgets";
 
 export function RecentTransactionsWidget({ data }: WidgetProps) {
@@ -132,43 +129,5 @@ export function UpcomingRecurringWidget({ data }: WidgetProps) {
         </ul>
       )}
     </WidgetCard>
-  );
-}
-
-export function SavingsInsightsWidget({ data }: WidgetProps) {
-  const fmt = useFormat();
-  const { insights, year } = data;
-
-  return (
-    <WidgetCard title={`${year} highlights`} description="Derived from your recorded transactions">
-      <div className="space-y-3 text-sm">
-        <Row icon={<TrendingUp className="size-4" />} label="Average monthly savings" value={fmt.money(insights.averageMonthlySavings)} />
-        <Separator />
-        <Row
-          icon={<Receipt className="size-4" />}
-          label="Highest spending month"
-          value={insights.highestMonth ? `${monthLabel(insights.highestMonth.month, { short: true })} · ${fmt.money(insights.highestMonth.expenses)}` : "—"}
-        />
-        <Separator />
-        <Row
-          icon={<Tag className="size-4" />}
-          label="Biggest category"
-          value={insights.topCategories[0] ? `${insights.topCategories[0].name} · ${fmt.money(insights.topCategories[0].total)}` : "—"}
-        />
-      </div>
-      <div className="mt-3 flex flex-wrap gap-1.5">
-        <Badge variant="outline">Active months · {insights.summary.activeMonths}</Badge>
-      </div>
-    </WidgetCard>
-  );
-}
-
-function Row({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
-  return (
-    <div className="flex items-center gap-3">
-      <span className="text-muted-foreground">{icon}</span>
-      <span className="min-w-0 flex-1 truncate text-muted-foreground">{label}</span>
-      <span className={cn("shrink-0 font-medium tabular-nums")}>{value}</span>
-    </div>
   );
 }
